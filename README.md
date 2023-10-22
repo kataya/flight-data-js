@@ -118,7 +118,10 @@ function getFlightPosition() {
 
 デバッグ開始状態の場合、main.js ファイルを保存すると、リロードされ日本近郊での飛行機に切り替えられます。
 
-![flight-jp](./images/flight-jp.png "flight-jp")
+![flight-jp](./images/flight-jp.png "flight-jp")  
+
+国土数値情報の空港データ を追加し、OpenSky Network のAPI で取得に切り替えして、デバッグ画面で操作している様子です。
+![flight-jp](./images/flight-jp.gif "flight-jp")  
 
 ## 参考
 
