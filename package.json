@@ -1,15 +1,24 @@
 {
   "name": "flight-data",
   "version": "1.0.0",
-  "description": "",
+  "description": "Esri Developer Summit の「[ArcGIS Maps SDK for JavaScript: 3D Visualization](https://esridevevents.github.io/arcgis-maps-sdk-for-javascript-3d-visualization/)」 のセッション内で、flight-data のサンプルアプリケーションがデモされており、その [flight-data のコードは GitHub で公開](https://github.com/EsriDevEvents/arcgis-maps-sdk-for-javascript-3d-visualization/tree/main/src/samples/flight-data) されています。  \r 本ページは、その「AMD」モジュールでのJavaScript を使ったサンプルアプリケーションのコードを「[Add npm to existing ArcGIS JS API web app project](https://urbandatapalette.com/post/2021-06-arcgis-js-api-env-setup/)」 の手順でローカル Web サーバー で動作するように設定し、その後、日本の近郊の範囲でアプリケーションを動作させるまでの手順を記載しています。",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "browser-sync start --server -w"
+    "dev": "browser-sync start --server -w"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.29.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kataya/flight-data-js.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/kataya/flight-data-js/issues"
+  },
+  "homepage": "https://github.com/kataya/flight-data-js#readme"
 }

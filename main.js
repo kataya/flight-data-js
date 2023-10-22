@@ -311,6 +311,58 @@ require([
   });
   map.add(featureLayer);
 
+  // 国土数値情報の空港データ（ポリゴン）の追加
+  const airportLayer = new FeatureLayer({
+    url: "https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/C28_21_Airport/FeatureServer/0",
+  });
+  map.add(airportLayer);
+
+  // 国土数値情報の空港データ（ラベル用ポイント）の追加
+  const labelSymbol = {
+    type: "label-3d",
+    symbolLayers: [
+        {
+          type: "text", // autocasts as new TextSymbol3DLayer()
+          material: {
+            color: "black"
+          },
+          halo: {
+            color: [255, 255, 255, 0.7],
+            size: 2
+          },
+          font: {
+            family: "Arial Unicode MS",
+            style: "normal",
+            weight: "bold"
+          },
+          size: 10
+        }
+      ],
+      verticalOffset: {
+        screenLength: 150,
+        maxWorldLength: 2000,
+        minWorldLength: 30
+      },
+      callout: {
+        type: "line", // autocasts as new LineCallout3D()
+        size: 1.5,
+        color: [0, 0, 0],
+        border: {
+          color: [255, 255, 255]
+        }
+      }
+  };
+
+  const airportLabelLayer = new FeatureLayer({
+    url: "https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/C28_21_Airport_Callout_Pt/FeatureServer/3",
+    labelingInfo: [
+        {
+            labelExpressionInfo: { expression: "$feature.C28_005" },
+            symbol: labelSymbol,
+        }
+    ]
+  });
+  map.add(airportLabelLayer);
 
   // Update the total number planes
   function updateTotal(total) {
@@ -358,7 +410,8 @@ require([
       "&lamax=" +
       extent.ymax +
       "&lomax=" +
-      extent.xmax;*/
+      extent.xmax;
+    */
     // add no real-time data,
     //let url = "./data/opensky_us-all-20230228-0146.json";
     let url = "./data/opensky-jp-all-20230319-2323.json";
@@ -433,7 +486,8 @@ require([
     document.getElementById("updated").style.visibility = "hidden";
     if (counter == 0) {
       getFlightPosition();
-      counter = 20; // 12 (s)next update interval
+      counter = 60; //20 (s)next update interval 
+      // 1日400リクエストの制限内で使う場合、24×60×60/400=216(s) 以上で設定
     }
   }, 1000);
 
